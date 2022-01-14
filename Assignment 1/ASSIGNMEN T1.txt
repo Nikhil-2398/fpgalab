@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{ASSIGNMENT 1}
+\author{NIKHIL LOHAR }
+\date{ 14 JAN 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Question }
+Derive a Canonical POS expression for a Boolean function G, represented by the following truth table:
+
+\begin{table} [h!]
+    \centering
+    \begin{tabular}{ | c | c | c | c | }
+    \hline
+    X & Y & Z & G(X,Y,Z) \\ [2ex]
+    \hline
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 1 \\
+    0 & 1 & 1 & 0 \\
+    1 & 0 & 0 & 1 \\
+    1 & 0 & 1 & 1 \\
+    1 & 1 & 0 & 0 \\
+    1 & 1 & 1 & 1 \\[1ex]
+    
+     \hline
+    \end{tabular}
+    \end{table}
+    
+SOLUTION:  G = $(X + Y + Z)$.($X+Y+\bar{Z}$). ($X+\bar{Y}+\bar{Z}$).($\bar{X}+\bar{Y}+Z)$
+Minimization Using K-Map : G =  $(X + Y )$.($X+\bar{Z}$).($\bar{X}+\bar{Y}+Z)$ 
+
+
+
+\end{document}
+
+
+\end{document}
+,
