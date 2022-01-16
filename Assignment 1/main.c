@@ -1,14 +1,24 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-int main(){
-    unsigned char G; 
-    unsigned char Out = 0x01;
-    unsigned char  X=0x00,Y=0x01,Z=0x00; 
+int main()
+{unsigned char Out = 0x01;
+unsigned char G; 
+    unsigned char X[8] = { 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01};
+    unsigned char Y[8] = { 0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x01, 0x01};
+    unsigned char Z[8] = { 0x00, 0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x01};
+    unsigned char a, b, expression_ans;
 
-    G = (X | Y)&(X |(~Z))&((~X) | (~Y)|Z);
+    for (int i = 0; i < 8; i++) {
 
-    printf("%x%x%x",Out&X,Out&Y,Out&Z);
+    
+            G=!((!(X[i]&&Y[i]))&&(!(X[i]&&Z[i]))&&(!(Y[i]&&(!(Z[i])))));
+             printf("%x%x%x",Out&X[i],Out&Y[i],Out&Z[i]);
     printf(" ");
     printf("%x\n" ,Out&G);
+   
+    }
     return 0;
+
+
 }
