@@ -1,0 +1,134 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{karnaugh-map}
+\usetikzlibrary{calc}
+\usepackage{placeins}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage{amssymb}
+\usepackage[framed]{matlab-prettifier}
+\usepackage{graphicx}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{enumerate}
+\usepackage{circuitikz}
+\title{ASSIGNMENT 1}
+\author{NIKHIL LOHAR }
+\date{ 14 JAN 2022}
+
+\begin{document}
+
+\maketitle
+
+\section{Question }
+Derive a Canonical POS expression for a Boolean function G, represented by the following truth table:
+
+\begin{table} [h!]
+    \centering
+    \begin{tabular}{ | c | c | c | c | }
+    \hline
+    X & Y & Z & G(X,Y,Z) \\ [2ex]
+    \hline
+    0 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 1 \\
+    0 & 1 & 1 & 0 \\
+    1 & 0 & 0 & 1 \\
+    1 & 0 & 1 & 1 \\
+    1 & 1 & 0 & 0 \\
+    1 & 1 & 1 & 1 \\[1ex]
+    
+     \hline
+    \end{tabular}
+    \end{table}
+    
+SOLUTION:  G = $(X + Y + Z)$.($X+Y+\bar{Z}$). ($X+\bar{Y}+\bar{Z}$).($\bar{X}+\bar{Y}+Z)$
+
+
+Minimization Using K-Map : G =  $(X + Y )$.($X+\bar{Z}$).($\bar{X}+\bar{Y}+Z)$ 
+
+\begin{figure}[!ht]
+\centering
+\resizebox{\columnwidth}{!}
+{
+\begin{karnaugh-map}[4][2][1][][]
+    \minterms{2,4,5,7}
+    \maxterms{0,1,3,6}
+    \implicant{1}{3}
+    \implicant{0}{1}
+    \implicant{6}{6}
+    \draw[color=blue, ultra thin] (0,2) --
+    node [pos=0.7, above right, anchor=south west] {$YZ$}
+    node [pos=0.7, below left, anchor=north east] {$X$} 
+    ++(130:1);
+    \end{karnaugh-map}
+}
+\caption{POS for G}
+\label{fig:kmap_G_pos}
+\end{figure}
+\FloatBarrier
+
+\subsection{Implement NAND Logic in SOP Form  }
+
+
+
+\begin{center}
+   $X.Z + \overline{X}.Y.\overline{Z} + X.Y$\\
+   $X.Z + (Y(\overline{X}.\overline{Z} + X))$\\
+   $X.Z + (Y(\overline{Z} + X))$\\
+   $X.Z + Y.\overline{Z} + X.Y$\\
+   \vspace{5pt}
+   
+\end{center}
+Output Using  NAND Gates.
+
+\begin{center}
+\begin{circuitikz}
+\draw
+(0,0)node[nand port](mynand1){}
+(0,6)node[nand port](mynand2){}
+(0,2)node[nand port](mynand3){}
+
+(2,2)node[nand port](mynand4){}
+
+(2,4)node[nand port](mynand5){}
+
+(4,4)node[nand port](mynand6){}
+
+(6,1)node[nand port](mynand7){}
+
+(mynand3.out)-|(mynand4.in 1)
+(mynand1.out)|-(mynand7.in 2)
+(mynand2.out)|-(mynand5.in 1)
+(mynand4.out)|-(mynand6.in 2)
+(mynand6.out)|-(mynand7.in 1)
+(mynand5.out)|-(mynand6.in 1)
+(mynand3.out)-|(mynand4.in 2)
+(mynand3.in 1)|-(mynand5.in 2)
+(mynand2.in 1)|-(mynand2.in 2);
+\node at (-1.6,0.3) {$X$};
+\node at (-1.6,-0.3) {$Z$};
+\node at (-1.6,1.7) {$X$};
+\node at (-1.6,2.5) {$Y$};
+\node at (-1.6,6) {$Z$};
+\node at (6.5,1) {$G$};
+
+
+
+
+
+
+
+
+
+
+\end{circuitikz};
+\end{center}
+
+\end{document}
+
+
+\end{document}
+,
