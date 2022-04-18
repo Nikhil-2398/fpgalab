@@ -96,7 +96,10 @@ int main(void)
         x = PyHal_GPIO_Get(23);
         y = PyHal_GPIO_Get(25);
         z = PyHal_GPIO_Get(27);
-        out = x&z | ((!x)&y&(!z)) | (x&(!y));
+	    int p=!(x&z);
+	    int q= !(x&(!(y)));
+	    int r= !((!(x))&(y&(!(z))));
+             out =  !(p&&q&&r);
         if(out == 1)
     	sevenseg(1,0,0,1,1,1,1);//The number 1
     	else
