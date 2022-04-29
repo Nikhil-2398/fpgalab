@@ -97,11 +97,7 @@ int main(void)
     dbg_str( "\ninit done\n");
 
     while(1){
-        LcdWriteString(" ARM Cortex M4  ");
-        LcdSetAddress(16);
-        LcdWriteString("16x2 LCD Display");
-        dbg_str("PRINT DONE\n");
-        HAL_DelayUSec(1000*1000);
+        
         LcdClear();
         HAL_DelayUSec(500*1000);
         x = PyHal_GPIO_Get(23);
